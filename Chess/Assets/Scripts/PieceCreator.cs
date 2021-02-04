@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,14 +13,15 @@ public class PieceCreator : MonoBehaviour
 
     private void Awake() {
         foreach (var piece in piecesPrefabs) {
-            nameToPieceDic.Add(piece.getComponent<Piece>().GetType.ToString(), piece); //King; Skin del king (Material)
+            nameToPieceDic.Add(piece.GetComponent<Piece>().GetType().ToString(), piece); //King; Skin del king (Material)
         }
     }
     public GameObject CreatePiece(Type type) {
+        GameObject prefab = nameToPieceDic[type.ToString()]; //Pide la sking con el nombre en el diccionario
         if (prefab)
         {
-            GameObject prefab = nameToPieceDic[type.ToString()]; //Pide la sking con el nombre en el diccionario
-            return prefab;
+            GameObject newPiece = Instantiate(prefab);
+            return newPiece;
         }
         return null;
     }

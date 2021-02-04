@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Type
+public enum PieceType
 {
     Pawn, Bishop, Rook, Knight, King, Queen
 }
+
+

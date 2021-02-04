@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,7 +28,7 @@ public class ChessGameController : MonoBehaviour
             Vector2Int squareCoords = startingBoardLayout.GetSquareCoordsAtIndex(i);
             TeamColor team = startingBoardLayout.GetSquareTeamColorAtIndex(i);
             string typeName = startingBoardLayout.GetSquarePieceNameAtIndex(i);
-            Type type = type.GetType(typeName);
+            Type type = Type.GetType(typeName);
             CreatePieceAndInitialize(squareCoords,team,type);
         }
     }

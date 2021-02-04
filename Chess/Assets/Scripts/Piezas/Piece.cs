@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(IObjectTweener))]
-[RequireComponent(typeof(materialSetter))]
+[RequireComponent(typeof(MaterialSetter))]
 public abstract class Piece : MonoBehaviour
 {
     private MaterialSetter materialSetter;
@@ -25,8 +25,11 @@ public abstract class Piece : MonoBehaviour
     }
 
     public void SetMaterial(Material material) {
+        if(materialSetter == null)
+        {
+            materialSetter = GetComponent<MaterialSetter>();
+        }
         materialSetter.SetSingleMaterial(material);
-
     }
 
     public bool IsFromSameTeam(Piece piece) {
@@ -40,7 +43,7 @@ public abstract class Piece : MonoBehaviour
     public virtual void MovePiece(Vector2Int coords) { }
 
     protected void TryToAddMove(Vector2Int coords) {
-        avaliableMoves.add(coords);
+        avaliableMoves.Add(coords);
         }
 
     public void SetData(Vector2Int coords, TeamColor team, Board board) {

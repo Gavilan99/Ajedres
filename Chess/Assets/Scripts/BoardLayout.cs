@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ public class BoardLayout : ScriptableObject
     [Serializable]
     private class BoardScuareSetup {
         public Vector2Int position;
-        public Type type;
+        public PieceType type;
         public TeamColor team;
 
     }
@@ -19,7 +20,7 @@ public class BoardLayout : ScriptableObject
     public int GetPiecesCount() {
         return boardSquares.Length;
     }
-    public Vector2Int GetSquaresPieceCoordsAtIndex(int index) { // Coordenadas de la pieza que esta en el cuadrado
+    public Vector2Int GetSquareCoordsAtIndex(int index) { // Coordenadas de la pieza que esta en el cuadrado
         if (boardSquares.Length <= index) {
             Debug.LogError("Index of piece is out of range");
             return new Vector2Int(-1, -1);
@@ -27,6 +28,7 @@ public class BoardLayout : ScriptableObject
         return new Vector2Int(boardSquares[index].position.x - 1, boardSquares[index].position.y - 1);
         
     }
+
     public string GetSquarePieceNameAtIndex(int index) { // Nombre de la pieza que esta en el cuadrado
         if (boardSquares.Length <= index)
         {
@@ -36,12 +38,12 @@ public class BoardLayout : ScriptableObject
         return boardSquares[index].type.ToString(); 
     }
 
-    public TeamColor GetSquareTeamColorAtIndex(int Index) { //Team de la pieza en ese cuadrado
+    public TeamColor GetSquareTeamColorAtIndex(int index) { //Team de la pieza en ese cuadrado
         if (boardSquares.Length <= index)
         {
             Debug.LogError("Index of piece is out of range");
             return TeamColor.Black;
         }
-        return boardSquares[index].Type.ToString();
+        return boardSquares[index].team;
     }
 }

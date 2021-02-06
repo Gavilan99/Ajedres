@@ -17,14 +17,16 @@ public abstract class Piece : MonoBehaviour
 
     public abstract List<Vector2Int> selectAvaliableMoves();
 
-    private void Awake() {
+    private void Awake() 
+    {
         avaliableMoves = new List<Vector2Int>();
         tweener = GetComponent<IObjectTweener>();
         materialSetter = GetComponent<MaterialSetter>();
         hasMoved = false;
     }
 
-    public void SetMaterial(Material material) {
+    public void SetMaterial(Material material) 
+    {
         if(materialSetter == null)
         {
             materialSetter = GetComponent<MaterialSetter>();
@@ -32,21 +34,29 @@ public abstract class Piece : MonoBehaviour
         materialSetter.SetSingleMaterial(material);
     }
 
-    public bool IsFromSameTeam(Piece piece) {
+    public bool IsFromSameTeam(Piece piece) 
+    {
         return team == piece.team;
             
     }
 
-    public bool CanMoveTo(Vector2Int coords) {
+    public bool CanMoveTo(Vector2Int coords) 
+    {
         return avaliableMoves.Contains(coords);
     }
-    public virtual void MovePiece(Vector2Int coords) { }
 
-    protected void TryToAddMove(Vector2Int coords) {
+    public virtual void MovePiece(Vector2Int coords) 
+    { 
+
+    }
+
+    protected void TryToAddMove(Vector2Int coords) //Movimiento posible
+    {
         avaliableMoves.Add(coords);
-        }
+    }
 
-    public void SetData(Vector2Int coords, TeamColor team, Board board) {
+    public void SetData(Vector2Int coords, TeamColor team, Board board) 
+    {
         this.team = team;
         occupiedSquare = coords;
         this.board = board;
